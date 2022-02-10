@@ -5,5 +5,5 @@
         </h2>
     </x-slot>
 
-   salam3
+    salam4
 </x-app-layout>
