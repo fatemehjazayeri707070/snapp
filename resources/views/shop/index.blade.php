@@ -12,7 +12,34 @@
             تعریف فروشنده جدید </a>
     </div>
 
+    @if ($shops->count())
+
     <hr class="my-4">
 
+    <table>
+        <thead>
+            <tr>
+                <th> # </th>
+                <th> عنوان </th>
+                <th> نام شخص </th>
+                <th> تلفن </th>
+                <th> تاریخ شروع فعالیت </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($shops as $key => $shop)
+            <tr>
+                <th> {{$key+1}} </th>
+                <td> {{$shop->title}} </td>
+                <td> {{$shop->first_name}} {{$shop->last_name}} </td>
+                <td> {{$shop->telephone}} </td>
+                <td> {{$shop->created_at}} </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 
-</x-app-layout>
+    @endif
+
+
+</x-app-layout>c

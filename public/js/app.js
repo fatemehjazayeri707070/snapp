@@ -38,7 +38,7 @@ var __toModule = (module) => {
   return __exportStar(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? {get: () => module.default, enumerable: true} : {value: module, enumerable: true})), module);
 };
 
-// node_modules/@vue/shared/dist/shared.cjs.js
+// node_modules/@svue/shared/dist/shared.cjs.js
 var require_shared_cjs = __commonJS((exports) => {
   "use strict";
   Object.defineProperty(exports, "__esModule", {value: true});
