@@ -28,7 +28,8 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('shop.create');
+        $shop = new Shop;
+        return view('shop.form', compact('shop'));
     }
 
     /**
@@ -96,7 +97,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        //
+        return view('shop.form', compact('shop'));
     }
 
     /**
@@ -108,7 +109,15 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|between:3,100|unique:shops,title,'.$shop->id,
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'telephone' => 'required|string|size:11',
+            'address' => 'nullable',
+        ]);
+        $shop->update($data);
+        return redirect()->route('shop.index')->withMessage( __('SUCCESS') );
     }
 
     /**
@@ -119,6 +128,8 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-        //
+        User::where('id', $shop->user_id)->delete();
+        $shop->delete();
+        return redirect()->route('shop.index')->withMessage( __('DELETED') );
     }
 }
