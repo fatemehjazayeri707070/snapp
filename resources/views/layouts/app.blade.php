@@ -17,8 +17,7 @@
 
     @livewireStyles
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    
 </head>
 
 <body class="antialiased">
@@ -60,6 +59,11 @@
     </div>
 
     @stack('modals')
+
+    <!-- Scripts -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script src="{{ mix('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
 
     @livewireScripts
 </body>
