@@ -11,13 +11,20 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('shop.index') }}" :active="request()->routeIs('shop.index')">
-                        مدیریت فروشنده ها
-                    </x-jet-nav-link>
+                    @admin
+                        <x-jet-nav-link href="{{ route('shop.index') }}" :active="request()->routeIs('shop.index')">
+                            مدیریت فروشنده ها
+                        </x-jet-nav-link>
+                    @endadmin
+                    @admins
+                        <x-jet-nav-link href="{{ route('product.index') }}" :active="request()->routeIs('product.index')">
+                            مدیریت محصولات
+                        </x-jet-nav-link>
+                    @endadmins
                 </div>
             </div>
 
