@@ -78,23 +78,7 @@ class ShopController extends Controller
         return redirect()->route('shop.index')->withMessage( __('SUCCESS') );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Shop $shop)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Shop  $shop
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Shop $shop)
     {
         return view('shop.form', compact('shop'));

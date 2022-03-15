@@ -12,5 +12,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 /* admin routes */
-Route::resource('shop','ShopController');
-Route::resource('product', 'ProductController');
+Route::resource('shop', 'ShopController')->except('show');
+Route::resource('product', 'ProductController')->except('show');
