@@ -38,6 +38,9 @@ class ProductController extends Controller
 
         $shop = Shop::where('user_id', auth()->id())->firstOrFail();
         $data['shop_id'] = $shop->id;
+        if (isset($data['image']) && $data['image']) {
+            $data['image'] = upload($data['image']);
+        }
         Product::create($data);
         return redirect()->route('product.index')->withMessage( __('SUCCESS') );
     }
