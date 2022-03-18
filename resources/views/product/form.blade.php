@@ -23,7 +23,7 @@
             </div>
             <div class="col-span-3">
                 <x-jet-label for="discount" value="تخفیف" />
-                <x-jet-input id="discount" class="block mt-3 w-full" type="text" name="discount" :value="$product->discount ?? old('discount')" required />
+                <x-jet-input id="discount" class="block mt-3 w-full" type="text" name="discount" :value="$product->discount ?? old('discount')"  />
             </div>
             <div class="col-span-3">
                 <x-jet-label for="image" value="تصویر" />
@@ -31,7 +31,7 @@
             </div>
             <div class="col-span-12">
                 <x-jet-label for="description" value="توضیحات" />
-                <x-jet-input id="description" class="block mt-3 w-full" type="text" name="description" :value="$product->description ?? old('description')" required />
+                <x-jet-input id="description" class="block mt-3 w-full" type="text" name="description" :value="$product->description ?? old('description')"  />
             </div>
 
         </div>
