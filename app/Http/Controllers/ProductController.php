@@ -12,7 +12,7 @@ class ProductController extends Controller
     private $validationRules = [
         'title' => 'required|string|min:3',
         'price' => 'required|integer',
-        'discount' => 'nullable|integer|between:1,100',
+        'discount' => 'nullable|integer|between:0,100',
         'description' => 'nullable|string',
         'image' => 'nullable|image|max:2000'
     ];
@@ -43,9 +43,19 @@ class ProductController extends Controller
     {
         $data = $request->validate($this->validationRules);
 
-        $data['shop_id'] = currentShopId();
         if (isset($data['image']) && $data['image']) {
             $data['image'] = upload($data['image']);
+        }
+        if (!$data['discount']) {
+            $data['discount'] = 0;
+        }
+
+        $currentUser = auth()->user();
+        if ($currentUser->role=='admin') {
+    
+            $data['shop_id'] = $request->shop_id;
+        }else {
+            $data['shop_id'] = currentShopId();
         }
         Product::create($data);
         return redirect()->route('product.index')->withMessage( __('SUCCESS') );
@@ -54,6 +64,10 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $shops = Shop::all();
+        
+        if (!$product->discount) {
+            $product->discount = 0;
+        }
         return view('product.form', compact('product', 'shops'));
     }
 

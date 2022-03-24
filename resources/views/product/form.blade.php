@@ -22,6 +22,7 @@
         @admin
             <div class="flex justify-center mb-5">
                 <div class="w-1/3">
+                <label class="block mb-2"> انتخاب فروشگاه </label>
                     <select class="select2" name="shop_id">
                         <option value=""> -- انتخاب کنید -- </option>
                         @foreach ($shops as $shop)
