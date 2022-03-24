@@ -1,3 +1,9 @@
+$(document).ready(function() {
+    $('.select2').select2({
+        width: '100%'
+    });
+});
+
 var deleteBtns = document.querySelectorAll('.delete-record');
 deleteBtns.forEach((btn, i) => {
     btn.addEventListener('click', function() {

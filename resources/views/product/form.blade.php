@@ -19,6 +19,20 @@
             @method('PUT')
         @endif
 
+        @admin
+            <div class="flex justify-center mb-5">
+                <div class="w-1/3">
+                    <select class="select2" name="shop_id">
+                        <option value=""> -- انتخاب کنید -- </option>
+                        @foreach ($shops as $shop)
+                            <option value="{{$shop->id}}">{{$shop->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <hr class="my-4">
+        @endadmin
+
         <div class="grid grid-cols-12 gap-4">
 
             <div class="col-span-3">
