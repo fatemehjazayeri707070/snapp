@@ -9,4 +9,15 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $appends = ['cost'];
+
+    public function getCostAttribute()
+    {
+        return $this->price - ( ($this->price * $this->discount) / 100 );
+    }
+
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
 }

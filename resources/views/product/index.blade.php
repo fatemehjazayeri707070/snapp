@@ -22,6 +22,7 @@
                     <th> عنوان </th>
                     <th> قیمت </th>
                     <th> تخفیف </th>
+                    <th> قیمت فروش </th>
                     <th> تصویر </th>
                     <th colspan="2"> عملیات </th>
                 </tr>
@@ -31,11 +32,12 @@
                     <tr>
                         <th> {{$key+1}} </th>
                         @admin
-                            <td> ... </td>
+                        <td> {{$product->shop->title ?? '-'}} </td>
                         @endadmin
                         <td> {{$product->title}} </td>
                         <td> {{number_format($product->price)}} </td>
                         <td> {{$product->discount}} </td>
+                        <td> {{number_format($product->cost)}} </td>
                         <td>
                             @if ($product->image)
                                 <span class="text-green-500"> دارد </span>
