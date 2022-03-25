@@ -1,5 +1,5 @@
 @font-face {
-    font-family: IranYekan;
+    font-family: 'IranYekan';
     src: url(../fonts/iranyekan.woff);
 }
 
@@ -28,6 +28,15 @@ tbody>tr:nth-child(even) {
     background-color: #F3F4F6;
 }
 
+select {
+    border-radius: 6px;
+    border-color: rgb(209, 213, 219);
+}
+
+input[type='checkbox'] {
+    border-radius: 3px;
+}
+
 .swal-button--ok,
 .swal-button--confirm {
     background-color: #6875F5;
@@ -36,4 +45,16 @@ tbody>tr:nth-child(even) {
 .swal-button--ok:hover,
 .swal-button--confirm:hover {
     background-color: #4d5dff !important;
+}
+
+.select2-container .select2-selection--single {
+    height: 42px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 42px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px;
 }

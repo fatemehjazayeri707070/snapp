@@ -8,6 +8,7 @@
     <div class="flex justify-end">
         <a href="{{route('product.create')}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"> تعریف محصول جدید </a>
     </div>
+
     <hr class="my-4">
 
 
@@ -30,10 +31,11 @@
         <div class="w-1/4 my-3 px-3">
             <label class="block mb-2"> مرتب سازی </label>
             <select class="w-full" name="o">
-                <option value="1"> ارزانترین </option>
-                <option value="2"> گران ترین </option>
-                <option value="3"> جدیدترین </option>
-                <option value="4"> قدیمی ترین </option>
+                <option value=""> -- انتخاب کنید -- </option>
+                <option @if(request('o') == 1) selected @endif value="1"> ارزانترین </option>
+                <option @if(request('o') == 2) selected @endif value="2"> گران ترین </option>
+                <option @if(request('o') == 3) selected @endif value="3"> جدیدترین </option>
+                <option @if(request('o') == 4) selected @endif value="4"> قدیمی ترین </option>
             </select>
         </div>
         <div class="w-1/4 my-3 px-3">
@@ -51,6 +53,7 @@
     @if ($products->count())
 
         <hr class="my-4">
+
         <table>
             <thead>
                 <tr>
@@ -71,7 +74,7 @@
                     <tr>
                         <th> {{$key+1}} </th>
                         @admin
-                        <td> {{$product->shop->title ?? '-'}} </td>
+                            <td> {{$product->shop->title ?? '-'}} </td>
                         @endadmin
                         <td> {{$product->title}} </td>
                         <td> {{number_format($product->price)}} </td>
@@ -90,7 +93,7 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{route('product.destroy', $product->id)}}" method="POST">
+                            <form action="{{route('product.destroy', $product->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="delete-record inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-900 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-300 disabled:opacity-25 transition">
@@ -102,8 +105,6 @@
                 @endforeach
             </tbody>
         </table>
-
-
 
     @endif
 
