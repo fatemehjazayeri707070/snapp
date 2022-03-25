@@ -8,6 +8,45 @@
     <div class="flex justify-end">
         <a href="{{route('product.create')}}" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"> تعریف محصول جدید </a>
     </div>
+    <hr class="my-4">
+
+
+    <form class="flex flex-wrap justify-center items-center">
+        @admin
+            <div class="w-1/4 my-3 px-3">
+                <label class="block mb-2"> انتخاب فروشگاه </label>
+                <select class="select2" name="s">
+                    <option value=""> -- انتخاب کنید -- </option>
+                    @foreach ($shops as $shop)
+                        <option @if(request('s') == $shop->id) selected @endif value="{{$shop->id}}">{{$shop->title}}</option>
+                    @endforeach
+                </select>
+            </div>
+        @endadmin
+        <div class="w-1/4 my-3 px-3">
+            <x-jet-label for="t" value="عنوان" />
+            <x-jet-input id="t" class="block mt-3 w-full" type="text" name="t" :value="request('t')" />
+        </div>
+        <div class="w-1/4 my-3 px-3">
+            <label class="block mb-2"> مرتب سازی </label>
+            <select class="w-full" name="o">
+                <option value="1"> ارزانترین </option>
+                <option value="2"> گران ترین </option>
+                <option value="3"> جدیدترین </option>
+                <option value="4"> قدیمی ترین </option>
+            </select>
+        </div>
+        <div class="w-1/4 my-3 px-3">
+            <label>
+                <input type="checkbox" name="d" value="1">
+                نمایش پاک شده ها
+            </label>
+        </div>
+        <div class="w-1/4 my-3 px-3 text-center">
+            <x-jet-button> جستجو </x-jet-button>
+        </div>
+    </form>
+
 
     @if ($products->count())
 
