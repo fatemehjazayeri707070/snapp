@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'IranYekan';
+    src: url(../fonts/iranyekan.woff);
+}
+
+body {
+    font-family: 'IranYekan';
+    direction: rtl;
+    text-align: right;
+}
+
+.card>.card-body {
+    background-color: #fff;
+    box-shadow: 2px 2px 4px gray;
+    border-radius: 5px;
+}
