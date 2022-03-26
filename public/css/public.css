@@ -14,3 +14,12 @@ body {
     box-shadow: 2px 2px 4px gray;
     border-radius: 5px;
 }
+
+.product-card .off {
+    text-decoration: line-through;
+}
+
+.product-card img {
+    width: 100%;
+    max-height: 225px;
+}
