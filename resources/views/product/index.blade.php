@@ -40,10 +40,11 @@
         </div>
         <div class="w-1/4 my-3 px-3">
             <label>
-                <input type="checkbox" name="d" value="1">
+                <input type="checkbox" name="d" value="1"  @if(request('d')) checked @endif>
                 نمایش پاک شده ها
             </label>
         </div>
+        <div class="w-full"></div>
         <div class="w-1/4 my-3 px-3 text-center">
             <x-jet-button> جستجو </x-jet-button>
         </div>
@@ -87,20 +88,31 @@
                                 <span class="text-red-500"> ندارد </span>
                             @endif
                         </td>
-                        <td>
-                            <a href="{{route('product.edit', $product->id)}}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-900 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-300 disabled:opacity-25 transition">
-                                ویرایش
-                            </a>
-                        </td>
-                        <td>
-                            <form action="{{route('product.destroy', $product->id)}}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="delete-record inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-900 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-300 disabled:opacity-25 transition">
-                                    حذف
-                                </button>
-                            </form>
-                        </td>
+                        @if ($product->trashed())
+                            <td colspan="2">
+                                <form action="{{route('product.restore', $product->id)}}" method="post">
+                                    @csrf
+                                    <button class="inline-flex items-center px-4 py-2 bg-yellow-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-yellow-500 active:bg-yellow-900 focus:outline-none focus:border-yellow-700 focus:ring focus:ring-yellow-300 disabled:opacity-25 transition">
+                                        بازیابی
+                                    </button>
+                                </form>
+                            </td>
+                        @else
+                            <td>
+                                <a href="{{route('product.edit', $product->id)}}" class="inline-flex items-center px-4 py-2 bg-green-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-500 active:bg-green-900 focus:outline-none focus:border-green-700 focus:ring focus:ring-green-300 disabled:opacity-25 transition">
+                                    ویرایش
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{route('product.destroy', $product->id)}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="button" class="delete-record inline-flex items-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 active:bg-red-900 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-300 disabled:opacity-25 transition">
+                                        حذف
+                                    </button>
+                                </form>
+                            </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
