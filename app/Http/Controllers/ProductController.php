@@ -56,7 +56,7 @@ class ProductController extends Controller
             if ($order == 4) {
                 $products = $products->orderBy('created_at', 'ASC');
             }}
-            $products = $products->get();
+            $products = $products->paginate(10);
         return view('product.index', compact('products','shops'));
     }
 
