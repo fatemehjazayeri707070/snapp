@@ -27,6 +27,11 @@
                         <span> 0 </span>
                 </a>
                 </li>
+                <li class="nav-item align-self-center" id="auth">
+                    <a href="{{route('login')}}" class="btn btn-primary btn-sm">
+                        حساب کاربری
+                    </a>
+                </li>
             </ul>
           
 
