@@ -48,7 +48,15 @@
                 <form class="d-flex justify-content-between align-items-center" method="post" action="{{route('cart.add', $product->id)}}">
                     @csrf
                     <a href="#"> {{$product->shop->title ?? '-'}} </a>
-                    <button type="submit" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
+                    @if ($cart_item = $product->isInCart())
+                        <div>
+                            <button type="submit" class="btn btn-warning text-white btn-sm"> - </button>
+                            <span class="cart-count"> {{$cart_item->count}} </span>
+                            <button type="submit" class="btn btn-warning text-white btn-sm"> + </button>
+                        </div>
+                    @else
+                        <button type="submit" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
+                    @endif
                 </form>
             </div>
         @endforeach

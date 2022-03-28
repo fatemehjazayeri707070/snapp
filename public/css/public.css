@@ -34,3 +34,11 @@ body {
 #auth {
     margin-right: auto;
 }
+
+.cart-count {
+    border: 1px solid #000;
+    margin: 0 3px;
+    padding-right: 8px;
+    padding-left: 3px;
+    border-radius: 50%;
+}

@@ -14,12 +14,18 @@ class CartController extends Controller
         $currentLoggedInUser = auth()->user();
         if ($currentLoggedInUser) {
             $cart = Cart::firstOrCreate(['user_id' => $currentLoggedInUser->id]);
-            CartItem::create([
-                'cart_id' => $cart->id,
-                'product_id' => $product->id,
-                'count' => 1,
-                'payable' => $product->cost,
-            ]);
+            if ($cart_item = $product->isInCart()) {
+                $cart_item->count++;
+                $cart_item->payable = $cart_item->count * $product->cost;
+                $cart_item->save();
+            }else {
+                CartItem::create([
+                    'cart_id' => $cart->id,
+                    'product_id' => $product->id,
+                    'count' => 1,
+                    'payable' => $product->cost,
+                ]);
+            }
             return back()->withMessage('آیتم مورد نظر به سبد خرید اضافه شد.');
         }else {
             return back()->withError('لطفا ابتدا وارد حساب کاربری خود شوید.');
