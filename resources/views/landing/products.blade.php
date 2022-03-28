@@ -45,17 +45,17 @@
                     @endif
                 </p>
                 <hr>
-                <form class="d-flex justify-content-between align-items-center" method="post" action="{{route('cart.add', $product->id)}}">
+                <form class="d-flex justify-content-between align-items-center" method="post" action="{{route('cart.manage', $product->id)}}">
                     @csrf
                     <a href="#"> {{$product->shop->title ?? '-'}} </a>
                     @if ($cart_item = $product->isInCart())
                         <div>
-                            <button type="submit" class="btn btn-warning text-white btn-sm"> - </button>
+                            <button type="submit" name="type" value="minus" class="btn btn-warning text-white btn-sm"> - </button>
                             <span class="cart-count"> {{$cart_item->count}} </span>
-                            <button type="submit" class="btn btn-warning text-white btn-sm"> + </button>
+                            <button type="submit" name="type" value="add" class="btn btn-warning text-white btn-sm"> + </button>
                         </div>
                     @else
-                        <button type="submit" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
+                        <button type="submit" name="type" value="add" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
                     @endif
                 </form>
             </div>
