@@ -45,10 +45,11 @@
                     @endif
                 </p>
                 <hr>
-                <div class="d-flex justify-content-between align-items-center">
+                <form class="d-flex justify-content-between align-items-center" method="post" action="{{route('cart.add', $product->id)}}">
+                    @csrf
                     <a href="#"> {{$product->shop->title ?? '-'}} </a>
-                    <button type="button" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
-                </div>
+                    <button type="submit" class="btn btn-info text-white px-3 btn-sm"> اضافه کردن به سبد خرید </button>
+                </form>
             </div>
         @endforeach
     </div>
