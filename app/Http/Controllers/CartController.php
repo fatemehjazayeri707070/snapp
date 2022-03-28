@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class CartController extends Controller
 {
@@ -11,7 +13,14 @@ class CartController extends Controller
     {
         $currentLoggedInUser = auth()->user();
         if ($currentLoggedInUser) {
-            dd('ok');
+            $cart = Cart::firstOrCreate(['user_id' => $currentLoggedInUser->id]);
+            CartItem::create([
+                'cart_id' => $cart->id,
+                'product_id' => $product->id,
+                'count' => 1,
+                'payable' => $product->cost,
+            ]);
+            return back()->withMessage('آیتم مورد نظر به سبد خرید اضافه شد.');
         }else {
             return back()->withError('لطفا ابتدا وارد حساب کاربری خود شوید.');
         }

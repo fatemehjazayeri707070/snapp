@@ -37,9 +37,15 @@
 
             <div class="card mt-3">
                 <div class="card-body">
-                @if ($error = session('error'))
+                    @if ($error = session('error'))
                         <div class="alert alert-danger">
                             {{$error}}
+                        </div>
+                    @endif
+
+                    @if ($message = session('message'))
+                        <div class="alert alert-success">
+                            {{$message}}
                         </div>
                     @endif
 
