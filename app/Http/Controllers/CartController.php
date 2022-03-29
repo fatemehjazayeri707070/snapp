@@ -16,10 +16,17 @@ class CartController extends Controller
         if ($currentLoggedInUser) {
             $cart = Cart::firstOrCreate(['user_id' => $currentLoggedInUser->id]);
             if ($cart_item = $product->isInCart()) {
-                if ($type == 'add') {
-                    $cart_item->count++;
+                if ($type == 'minus' && $cart_item->count == 1) {
+                    $cart_item->delete();
+                    return back()->withMessage('آیتم مورد نظر از سبد خرید شما حذف شد.');
                 }else {
-                    $cart_item->count--;
+                    if ($type == 'add') {
+                        $cart_item->count++;
+                    }else {
+                        $cart_item->count--;
+                    }
+                    $cart_item->payable = $cart_item->count * $product->cost;
+                    $cart_item->save();
                 }
                 $cart_item->payable = $cart_item->count * $product->cost;
                 $cart_item->save();
@@ -35,5 +42,10 @@ class CartController extends Controller
         }else {
             return back()->withError('لطفا ابتدا وارد حساب کاربری خود شوید.');
         }
+    }
+    public function remove(CartItem $cart_item)
+    {
+        $cart_item->delete();
+        return back()->withMessage('آیتم مورد نظر از سبد خرید شما حذف شد.');
     }
 }

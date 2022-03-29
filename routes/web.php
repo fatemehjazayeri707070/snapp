@@ -21,3 +21,4 @@ Route::get('landing/{page}', 'LandingController@loadPage')->name('landing');
 
 // cart routes
 Route::post('cart/manage/{product}', 'CartController@manage')->name('cart.manage');
+Route::delete('cart/{cart_item}', 'CartController@remove')->name('cart.remove');
