@@ -14,7 +14,7 @@ class CartController extends Controller
         $type = $request->type;
         $currentLoggedInUser = auth()->user();
         if ($currentLoggedInUser) {
-            $cart = Cart::firstOrCreate(['user_id' => $currentLoggedInUser->id]);
+            $cart = Cart::firstOrCreate(['user_id' => $currentLoggedInUser->id, 'finished' => 0]);
             if ($cart_item = $product->isInCart()) {
                 if ($type == 'minus' && $cart_item->count == 1) {
                     $cart_item->delete();
@@ -47,5 +47,16 @@ class CartController extends Controller
     {
         $cart_item->delete();
         return back()->withMessage('آیتم مورد نظر از سبد خرید شما حذف شد.');
+    }
+    public function finish()
+    {
+        $cart = Cart::where('user_id', auth()->id())->where('finished', 0)->first();
+        if (!$cart) {
+            return back()->withError('سبد خریدی وجود ندارد!');
+        }
+        $cart->finished = 1;
+        $cart->code = rand(100000, 999999);
+        $cart->save();
+        return back()->withMessage("پرداخت شما با موفقیت در سیستم ثبت شد. کد پیگیری : $cart->code");
     }
 }
